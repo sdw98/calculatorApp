@@ -34,8 +34,6 @@ public class CalculatorController {
         try {
             double result = calculatorService.calculate(num1, num2, operation);
 
-            System.out.println(result);
-
             model.addAttribute("result", result);
         } catch(IllegalArgumentException e) {
             model.addAttribute("errorMessage", e.getMessage());
