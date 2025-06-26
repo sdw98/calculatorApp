@@ -8,8 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
-
 @Controller
 public class CalculatorController {
     private final CalculatorService calculatorService;
@@ -34,7 +32,10 @@ public class CalculatorController {
         System.out.println("Clicked!" + num1 + num2 + operation);
 
         try {
-            double result = calculatorService.calculate(num1, 10, "add");
+            double result = calculatorService.calculate(num1, num2, operation);
+
+            System.out.println(result);
+
             model.addAttribute("result", result);
         } catch(IllegalArgumentException e) {
             model.addAttribute("errorMessage", e.getMessage());
