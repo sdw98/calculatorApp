@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
+
 @Controller
 public class CalculatorController {
     private final CalculatorService calculatorService;
@@ -18,25 +20,25 @@ public class CalculatorController {
     }
 
     @GetMapping("/")
-    public String showClaculator() {
+    public String showCalculator() {
         return "calculator";
     }
 
     @PostMapping("/calculate")
     public String calculate(
             @RequestParam("num1") double num1,
-//            @RequestParam("num2") double num2,
-//            @RequestParam("operation") String operation,
+            @RequestParam("num2") double num2,
+            @RequestParam("operation") String operation,
             Model model
     ) {
-        System.out.println("Clicked!");
+        System.out.println("Clicked!" + num1 + num2 + operation);
 
-        try{
+        try {
             double result = calculatorService.calculate(num1, 10, "add");
             model.addAttribute("result", result);
-        }catch (IllegalArgumentException e) {
+        } catch(IllegalArgumentException e) {
             model.addAttribute("errorMessage", e.getMessage());
         }
-        return "caclulator";
+        return "calculator";
     }
 }
